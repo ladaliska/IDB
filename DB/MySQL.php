@@ -6,7 +6,7 @@ class Mysql implements IDB
     public function connect(string $host = "",string $username = "",string $password = "",string $database = ""): ?static
     {
         $this->db=@mysqli_connect("$host","$username","$password","$database");
-        if($this->db ===false){
+        if($this->db === false){
             die("DB ERROR");
         }else
         {
@@ -30,17 +30,17 @@ class Mysql implements IDB
     }
     public function update(string $table, int $id, array $data):bool
     {
-        $names= array_keys($data);
-        $values =$data;
-        $sql ="UPDATE SET $names[0] =$values[0] WHERE id=$id;";
+        $names = array_keys($data);
+        $values = $data;
+        $sql = "UPDATE SET $names[0] = $values[0] WHERE id=$id;";
         for($i=1;$i<count($names);$i++)
         {
-        $sql .="UPDATE SET $names[0] =$values[0] WHERE id=$id;";
+        $sql .="UPDATE SET $names[0] = $values[0] WHERE id=$id;";
         }
         return mysqli_query($this->db,$sql);
     }
     public function delete(string $table, int $id):bool{
-        $sql="DELETE FROM $table WHERE id =$id;";
+        $sql="DELETE FROM $table WHERE id = $id;";
         return mysqli_query($this->db,$sql);;
     }
 }
